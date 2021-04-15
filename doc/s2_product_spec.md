@@ -1,6 +1,6 @@
 ## Sentinel Product Specification
 
-... with a focus on Level 1C.
+... with a focus on Level 1C **and** Level 2A.
 
 To get more information on the data format, please be refered to the official
 Sentinel 2 [Product Specification](https://www.google.at/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&sqi=2&ved=0CCQQFjABahUKEwjB_5i834rIAhWDwxQKHRtVDdI&url=https%3A%2F%2Fsentinel.esa.int%2Fdocuments%2F247904%2F349490%2FS2_MSI_Product_Specification.pdf&usg=AFQjCNEI-gxDbhIpFaDPXq1e1NEZNRHoSQ&sig2=aUy9lsNqJlgCF3PLrA1vbQ&bvm=bv.103073922,d.bGQ). Also, have a look at the [tiling
@@ -26,7 +26,7 @@ PDI elements can be:
 
 ### Granule/Tile
 
-Depending on the AOI, the User Product is composed by **Granules** (or Tiles for L1C). A Granule is the minimum indivisible (geographical) partition of a User Product. It also includes all possible spectral bands.
+Depending on the AOI, the User Product is composed by **Granules** (or Tiles for L1C/L2A). A Granule is the minimum indivisible (geographical) partition of a User Product. It also includes all possible spectral bands.
 
 As we are focusing on L1C data, the terms "**Granule**" and "**Tile**" describe the same.
 

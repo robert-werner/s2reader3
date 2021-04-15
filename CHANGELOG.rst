@@ -3,6 +3,12 @@ Changelog
 #########
 
 ---
+0.6
+---
+* convert scripts from py2 to py3
+* add reading of Level 2A products
+
+---
 0.5
 ---
 * raise warning instead of exception if expected image path is not available
