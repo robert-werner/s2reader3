@@ -382,13 +382,11 @@ class SentinelGranule(object):
                 )
         product_org = next(self.dataset._product_metadata.iter(
             "Product_Organisation"))
-        print(product_org)
         granule_item = [
             g
             for g in chain(*[gl for gl in product_org.iter("Granule_List")])
             if self.granule_identifier == g.attrib["granuleIdentifier"]
         ]
-        print(granule_item[0].iter())
         if len(granule_item) != 1:
             raise S2ReaderMetadataError(
                 "Granule ID cannot be found in product metadata."
@@ -538,7 +536,7 @@ class SentinelGranuleCompact(SentinelGranule):
 
 def _pvi_path(granule):
     """Determine the PreView Image (PVI) path inside the SAFE pkg."""
-    pvi_name = granule._metadata.iter("PVI_FILENAME").next().text
+    pvi_name = next(granule._metadata.iter("PVI_FILENAME")).text
     pvi_name = pvi_name.split("/")
     pvi_path = os.path.join(
         granule.granule_path,

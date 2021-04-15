@@ -45,10 +45,10 @@ def main(args=None):
                         footprint=str(safe_dataset.footprint),
                         bounds=str(safe_dataset.footprint.bounds),
                         granules=len(safe_dataset.granules),
-                        granules_srids=list(set([
+                        granules_srids=list({
                             granule.srid
                             for granule in safe_dataset.granules
-                            ]))
+                            })
                         )
                     )
             print("\n")
