@@ -1,6 +1,6 @@
 # s2reader
 
-[![PyPI version](https://badge.fury.io/py/s2reader3.svg)](https://badge.fury.io/py/s2reader3) [![Build Status](https://travis-ci.org/robert-werner/s2reader3.svg?branch=master)](https://travis-ci.org/robert-werner/s2reader3) [![Coverage Status](https://coveralls.io/repos/github/robert-werner/s2reader3/badge.svg?branch=master)](https://coveralls.io/github/robert-werner/s2reader3?branch=master) [![Code Health](https://landscape.io/github/ungarj/s2reader/master/landscape.svg?style=flat)](https://landscape.io/github/ungarj/s2reader/master)
+[![PyPI version](https://badge.fury.io/py/s2reader3.svg)](https://badge.fury.io/py/s2reader3) [![Build Status](https://travis-ci.org/robert-werner/s2reader3.svg?branch=master)](https://travis-ci.org/robert-werner/s2reader3) [![Coverage Status](https://coveralls.io/repos/github/robert-werner/s2reader3/badge.svg?branch=master)](https://coveralls.io/github/robert-werner/s2reader3?branch=master) [![Code Health](https://landscape.io/github/ungarj/s2reader/master/landscape.svg?style=flat)](https://landscape.io/github/robert-werner/s2reader3/master)
 
 Simple python module to read Sentinel 2 metadata from SAFE. In its current version, it is designed to work with Level 1C data **and** Level 2A data.
 
