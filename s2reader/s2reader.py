@@ -294,7 +294,7 @@ class SentinelGranule(object):
             path for path in self.dataset._product_metadata.xpath(
                 ".//Granule[@granuleIdentifier='%s']/IMAGE_FILE/text()"
                 % self.granule_identifier
-            ) if path.endswith('TCI')
+            ) if path.endswith('TCI') or 'TCI_10m' in path
         ]
         try:
             tci_path = tci_paths[0]
