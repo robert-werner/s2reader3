@@ -13,8 +13,9 @@ after_success:
 - coveralls
 deploy:
   provider: pypi
+  tag_name: $TRAVIS_TAG
   user: __token__
   password: $TEST_PYPI_TOKEN
   on:
-    tags: true
     branch: master
+    repo: robert-werner/s2reader3
