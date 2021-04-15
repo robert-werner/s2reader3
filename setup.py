@@ -1,15 +1,15 @@
-#!/usr/bin/env python
-"""s2reader setup configuration."""
+#!/usr/bin/env python3
+"""s2reader3 setup configuration."""
 
 from setuptools import setup
 
 setup(
-    name='s2reader',
-    version='0.5',
-    description='simple metadata reader for Sentinel-2 SAFE files',
-    author='Joachim Ungar',
-    author_email='joachim.ungar@gmail.com',
-    url='https://github.com/ungarj/s2reader',
+    name='s2reader3',
+    version='0.6',
+    description='simple Python 3 metadata reader for Sentinel-2 SAFE files (Level-1C and Level-2A), derived from old unsupported Python 2 s2reader of https://github.com/ungarj/s2reader.git',
+    author='Leonid Kolesnichenko',
+    author_email='xperience439@gmail.com',
+    url='https://github.com/robert-werner/s2reader3.git',
     license='MIT',
     packages=[  # TODO fix module structure
         's2reader', 's2reader.cli'
@@ -33,7 +33,7 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Scientific/Engineering :: GIS',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.7',
     ],
     setup_requires=['pytest-runner'],
     tests_require=['pytest']

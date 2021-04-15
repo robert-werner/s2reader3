@@ -379,7 +379,7 @@ def main(args=sys.argv[1:]):
 
     try:
         safe_pkg = s2reader.open(parsed.filename[0])
-    except IOError as e:
+    except IOError, e:
         parser.error('Could not open SAFE package. Error was "%s"' % e)
 
     granules = safe_pkg.granules
@@ -521,7 +521,7 @@ def _get_granule_template_params(granule, resolution):
 def _swapped(coords):
     ret = []
     for i in range(len(coords))[::2]:
-        print(i)
+        print i
         ret.append(coords[i + 1])
         ret.append(coords[i])
 

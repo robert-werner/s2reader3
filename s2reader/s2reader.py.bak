@@ -100,7 +100,7 @@ class SentinelDataSet(object):
             # Find product metadata XML.
             if data_object.attrib.get("ID") == "S2_Level-1C_Product_Metadata" or data_object.attrib.get("ID") == "S2_Level-2A_Product_Metadata":
                 relpath = os.path.relpath(
-                    next(data_object.iter("fileLocation")).attrib["href"])
+                    data_object.iter("fileLocation").next().attrib["href"])
                 try:
                     if self.is_zip:
                         abspath = os.path.join(self._zip_root, relpath)
@@ -259,7 +259,7 @@ class SentinelGranule(object):
             root = self._metadata.getroot()
         return {
             k: v
-            for k, v in list(root.nsmap.items())
+            for k, v in root.nsmap.items()
             if k
         }
 
@@ -382,19 +382,17 @@ class SentinelGranule(object):
                 )
         product_org = next(self.dataset._product_metadata.iter(
             "Product_Organisation"))
-        print(product_org)
         granule_item = [
             g
             for g in chain(*[gl for gl in product_org.iter("Granule_List")])
             if self.granule_identifier == g.attrib["granuleIdentifier"]
         ]
-        print(granule_item[0].iter())
         if len(granule_item) != 1:
             raise S2ReaderMetadataError(
                 "Granule ID cannot be found in product metadata."
             )
         rel_path = [
-            f.text for f in granule_item[0].iter() if f.text[-2:] == band_id or f.text[-6:-4] == band_id
+            f.text for f in granule_item[0].iter() if f.text[-2:] == band_id
         ]
         if len(rel_path) != 1:
             # Apparently some SAFE files don't contain all bands. In such a
@@ -447,7 +445,7 @@ class SentinelGranule(object):
             root = fromstring(self.dataset._zipfile.read(gml))
         else:
             root = parse(gml).getroot()
-        nsmap = {k: v for k, v in list(root.nsmap.items()) if k}
+        nsmap = {k: v for k, v in root.nsmap.items() if k}
         try:
             for mask_member in root.iterfind(
                     "eop:maskMembers", namespaces=nsmap):
@@ -587,7 +585,7 @@ def _polygon_from_coords(coords, fix_geom=False, swap=True, dims=2):
     - fix_geom: automatically fix geometry
     """
     assert len(coords) % dims == 0
-    number_of_points = len(coords) // dims
+    number_of_points = len(coords)/dims
     coords_as_array = np.array(coords)
     reshaped = coords_as_array.reshape(number_of_points, dims)
     points = [

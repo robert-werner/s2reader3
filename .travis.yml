@@ -1,8 +1,8 @@
-dist: trusty
+dist: bionic
 sudo: required
 language: python
 python:
-- '2.7'
+- '3.7'
 install:
 - pip install -r requirements.txt
 - pip install pytest coveralls
@@ -13,12 +13,8 @@ after_success:
 - coveralls
 deploy:
   provider: pypi
-  user: ungarj
-  password:
-    secure: fS7KC1McPvAHxuTovt1YjUbRfI6CEb0XM2oMB0uZgOng35GTmvXgCbv2Y2s6hiSwHZGFM0WwZJzqDGuv+iaOgiB55hGmSsFgPup6nHLtQz29J7pEgp32uYMB7hu1slwAWOnV8N87VeZj45OPYsMjdpw3bYNslaATDEH/iqciLoHo5iHe0rlutgGrQFsoN7mB/bbQ0Q8Ttumt/z7hhneObo517stlEo2Whp1E8aCdMphTj8JaWpPVrNeVYkB/LRhP/dYbsVBmzhq+EKSyC2OaGXwUZ6w9+3x5sZZ9DdMVaZFm3/4hmBKSFV7zZ5xfisTHV6tgjxvm/RyQqcj73A0ZagMhVTtCXfpEqhUYonuYnlb/niYi3qsBY6KbBaE+/ycr9AoVVUc5JnSoFKRurzWRKoXwRCZyZ8fU/Qxne3xAqr6+dCAdjOMkvGrd5jWHCHVP8LV7PeuonVGHO8K+VtV1NZHTrSyEjo8WUXAvScTnyAkxRdgPjSB0x4UxSZ2YWEDzxPAUdA+mRWKymmNlvHlg17OArQ2N9w63Xr9nk9srDUiyZmI6ts8YFo16W9/j1MI8hMP6lfx/lhfs6IHzHdPaVkluY9nWi3kpSiw+7zPY6pAqm06hQ1Q2nzQEZco6gQXPzn/B793EuIilxcpqhT73C+VMJS7++0SF1tNhYc4kniU=
+  user: __token__
+  password: $TEST_PYPI_TOKEN
   on:
     tags: true
     branch: master
-env:
-  global:
-    secure: o/sIsSe12EeXHywCe/hgjsTfYAJ0EDzhPu0LsoBKUrdoygTnbYj5YyDZ4zlxdSB8BcPHcoqNeygWuPaNBIqgh1fbpksLXMCA7c2r8AKKOufbblyk9eQmUp/QN0eCj86TZQHUDmvEJvoOhMFwyeTZsuCSm6GwFMm6ESPz3plq0GTlSnoveyWjlNrHm4Brj1zi6rLW6lXSLppf6gQVsAO/Tk575j8K7cQQ8VXpn42h00IQvEti/xOZzOc0Ar+c4JaEv5fFVUU9a9yfix6w+Laq9kzg801m7/+skBaRfPDoFHzo2ANIx3G/wB/ZuB2S9KmzeseXKwSZn93CxLRODFt7NDSfz0h6Sy29IE8N7KgNwxT6sVjUb263OTROtLYNMDcNULvTSsIOVuyag1roCt7Gbk1i8YkwZGBupjn+l+KCEv4YD+GH8Ob0Fk4/+PEccoe4kwtunRD4N+ZmtBzbmx++CF8p3duef+TiofRM6GwC4GZ6oeXEOsns1mpKJoK36B5Nb4ubO9V/fei2u4dm49She8jWPEXzvyjAp4s4k5iCw0OPf/rXIl9aTAEjhlczuwbpYsVtbXHUWA+WIdWHv39uluWV7eQR4Zs4ZxDyZ+uKj60GKadviBYz+8WV0aLsO7aLKJHYun08MoLfyGzPSN8/wunPvMHeChszJb25cA1ii5k=

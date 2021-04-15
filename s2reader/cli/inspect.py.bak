@@ -51,7 +51,7 @@ def main(args=None):
                             ]))
                         )
                     )
-            print("\n")
+            print "\n"
 
 
 if __name__ == "__main__":
