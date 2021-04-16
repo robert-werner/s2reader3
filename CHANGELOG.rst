@@ -3,6 +3,13 @@ Changelog
 #########
 
 ---
+0.6.1-0.6.2
+---
+
+* Change README.md
+* Change import name to s2reader3
+
+---
 0.6
 ---
 * convert scripts from py2 to py3
