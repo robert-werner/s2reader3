@@ -3,7 +3,15 @@ Changelog
 #########
 
 ---
-0.6.1-0.6.2
+0.6.3
+---
+
+* Add L2A band ids to list of available channels
+* Add wvp_path method
+* Fix behavior of granule_path to return best resolution products
+
+---
+0.6.1 (0.6.2)
 ---
 
 * Change README.md

@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name='s2reader3',
-    version='0.6.2',
+    version='0.6.3',
     description='simple Python 3 metadata reader for Sentinel-2 SAFE files (Level-1C and Level-2A), derived from old unsupported Python 2 s2reader3 of https://github.com/ungarj/s2reader.git',
     author='Leonid Kolesnichenko',
     author_email='xperience439@gmail.com',

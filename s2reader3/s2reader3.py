@@ -32,7 +32,7 @@ def open(safe_file):
 
 BAND_IDS = [
     "01", "02", "03", "04", "05", "06", "07", "08", "8A", "09", "10",
-    "11", "12"
+    "11", "12", "AOT", "WVP", "TCI", "SCL"
 ]
 
 
@@ -288,6 +288,25 @@ class SentinelGranule(object):
         return _pvi_path(self)
 
     @cached_property
+    def wvp_path(self):
+        wvp_paths = [
+            path for path in self.dataset._product_metadata.xpath(
+                ".//Granule[@granuleIdentifier='%s']/IMAGE_FILE/text()"
+                % self.granule_identifier
+            ) if path.endswith('WVP_10m')
+        ]
+        try:
+            wvp_path = wvp_paths[0]
+        except IndexError:
+            return None
+
+        return os.path.join(
+            self.dataset._zip_root if self.dataset.is_zip else self.dataset.path,
+            wvp_path
+        ) + '.jp2'
+
+
+    @cached_property
     def tci_path(self):
         """Return the path to the granules TrueColorImage."""
         tci_paths = [
@@ -391,10 +410,11 @@ class SentinelGranule(object):
             raise S2ReaderMetadataError(
                 "Granule ID cannot be found in product metadata."
             )
+        image_list = sorted([f.text for f in granule_item[0].iter()])
         rel_path = [
-            f.text for f in granule_item[0].iter() if f.text[-2:] == band_id or f.text[-6:-4] == band_id
-        ]
-        if len(rel_path) != 1:
+            image for image in image_list if band_id in image[-3:] or band_id in image[-7:-4]
+          ]
+        if len(rel_path) < 1:
             # Apparently some SAFE files don't contain all bands. In such a
             # case, raise a warning and return None.
             warnings.warn(
