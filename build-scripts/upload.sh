@@ -11,4 +11,5 @@ echo $PYPI_USERNAME
 echo $PYPI_PASSWORD
 echo "username=$PYPI_USERNAME" >> $PYPI_CONFIG
 echo "password=$PYPI_PASSWORD" >> $PYPI_CONFIG
-twine upload -u $PYPI_USERNAME -p $PYPI_PASSWORD --verbose dist/*.tar.gz
+
+twine upload  --repository-url https://upload.pypi.org/legacy/ -u $PYPI_USERNAME -p $PYPI_PASSWORD --verbose dist/*
