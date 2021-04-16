@@ -16,21 +16,21 @@ import s2reader
 
 with s2reader.open("example.SAFE") as s2_product:
     # returns product start time
-    print s2_product.product_start_time
+    print(s2_product.product_start_time)
     # returns product stop time
-    print s2_product.product_stop_time
+    print(s2_product.product_stop_time)
     # returns product generation time
-    print s2_product.generation_time
+    print(s2_product.generation_time)
     # returns product footprint
-    print s2_product.footprint
+    print(s2_product.footprint)
     # iterates through product granules
     for granule in s2_product.granules:
         # returns granule path
-        print granule.granule_path
+        print(granule.granule_path)
         # returns granule footprint
-        print granule.footprint
+        print(granule.footprint)
 
     # returns list of image paths of a specific band (e.g. all .jp2 files for
     # band 1)
-    print s2_product.granule_paths(1)
+    print(s2_product.granule_paths(1))
 ```
