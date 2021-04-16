@@ -1,0 +1,60 @@
+defaults: &defaults
+  docker:
+    - image: continuumio/miniconda3:latest
+  working_directory: ~/repo
+
+version: 2.1
+
+jobs:
+  build-and-test:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          command: conda install python=3.7
+      - run:
+          command: pip install -r requirements.txt
+      - run:
+          command: pip install pytest coveralls
+      - run:
+          command: pip install .
+      - run:
+          command: coverage run --source=s2reader3 setup.py test
+      - run:
+          when: on_success
+          command: coveralls
+      - run:
+          command: python setup.py sdist
+      - persist_to_workspace:
+          root: dist
+          paths:
+            - .
+      - checkout
+      - attach_workspace:
+             at: dist
+      - run:
+             name: Upload package
+             command: build-scripts/upload.sh
+
+  pypi:
+      <<: *defaults
+      steps:
+          - checkout
+          - attach_workspace:
+             at: dist
+          - run:
+             name: Upload package
+             command: build-scripts/upload.sh
+
+
+workflows:
+  version: 2
+  build-pypi:
+    jobs:
+      - build-and-test
+      - pypi:
+          requires:
+            - build-and-test
+          filters:
+            branches:
+              only: master
