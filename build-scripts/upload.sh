@@ -7,6 +7,11 @@ PYPI_CONFIG="${HOME}/.pypirc"
 pip install --upgrade pip
 pip install twine
 echo $'[distutils]\nindex-servers = pypi\n[pypi]' > $PYPI_CONFIG
+echo $PYPI_USERNAME
+echo $PYPI_PASSWORD
 echo "username=$PYPI_USERNAME" >> $PYPI_CONFIG
 echo "password=$PYPI_PASSWORD" >> $PYPI_CONFIG
-twine upload dist/*.tar.gz
+echo $PYPI_USERNAME >> $TWINE_USERNAME
+echo $PYPI_PASSWORD >> $TWINE_PASSWORD
+
+twine upload  --repository-url https://upload.pypi.org/legacy/ --verbose dist/*
