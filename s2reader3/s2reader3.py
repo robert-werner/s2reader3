@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
-s2reader reads and processes Sentinel-2 L1C SAFE archives.
+s2reader3 reads and processes Sentinel-2 L1C SAFE archives.
 
 This module implements an easy abstraction to the SAFE data format used by the
 Sentinel 2 misson of the European Space Agency (ESA)
