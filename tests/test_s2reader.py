@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Test s2reader main module."""
+"""Test s2reade3r main module."""
 
 import os
-import s2reader
+import s2reader3
 
-from s2reader import BAND_IDS
+from s2reader3 import BAND_IDS
 
 
 SCRIPTDIR = os.path.dirname(os.path.realpath(__file__))
@@ -81,7 +81,7 @@ def test_zipped_safe_bands():
 
 def _test_attributes(test_data, safe_path):
     """Compare dictionary attributes with given SAFE file."""
-    with s2reader.open(safe_path) as safe:
+    with s2reader3.open(safe_path) as safe:
         assert safe is not None
         assert safe.product_start_time == test_data["product_start_time"]
         assert safe.product_stop_time == test_data["product_stop_time"]

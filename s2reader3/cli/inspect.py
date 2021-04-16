@@ -3,7 +3,7 @@
 
 import sys
 import argparse
-import s2reader
+import s2reader3
 import pprint
 
 
@@ -17,7 +17,7 @@ def main(args=None):
 
     pp = pprint.PrettyPrinter()
     for safe_file in parsed.safe_file:
-        with s2reader.open(safe_file) as safe_dataset:
+        with s2reader3.open(safe_file) as safe_dataset:
             if parsed.granules:
                 pp.pprint(
                     dict(

@@ -4,7 +4,7 @@
 import sys
 import argparse
 
-import s2reader
+import s2reader3
 
 
 EOOM_TEMPLATE_PRODUCT = """<?xml version="1.0" encoding="UTF-8"?>
@@ -283,7 +283,7 @@ EOOM_TEMPLATE_GRANULE = """<?xml version="1.0" encoding="UTF-8"?>
 #     )
 
 #     parsed = parser.parse_args(args)
-#     safe_pkg = s2reader.open(parsed.filename[0])
+#     safe_pkg = s2reader3.open(parsed.filename[0])
 
 #     granules = safe_pkg.granules
 
@@ -378,7 +378,7 @@ def main(args=sys.argv[1:]):
     parsed = parser.parse_args(args)
 
     try:
-        safe_pkg = s2reader.open(parsed.filename[0])
+        safe_pkg = s2reader3.open(parsed.filename[0])
     except IOError as e:
         parser.error('Could not open SAFE package. Error was "%s"' % e)
 
