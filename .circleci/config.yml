@@ -37,6 +37,8 @@ jobs:
           - attach_workspace:
              at: dist
           - run:
+             command: chmod +x build-scripts/upload.sh
+          - run:
              name: Upload package
              command: build-scripts/upload.sh
 
