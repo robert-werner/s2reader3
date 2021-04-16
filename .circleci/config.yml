@@ -29,12 +29,6 @@ jobs:
           root: dist
           paths:
             - .
-      - checkout
-      - attach_workspace:
-             at: dist
-      - run:
-             name: Upload package
-             command: build-scripts/upload.sh
 
   pypi:
       <<: *defaults
