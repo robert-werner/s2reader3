@@ -6,7 +6,6 @@ import s2reader3
 
 from s2reader3 import BAND_IDS
 
-
 SCRIPTDIR = os.path.dirname(os.path.realpath(__file__))
 TESTDATA_DIR = os.path.join(SCRIPTDIR, "data")
 SAFE = "safe/S2A_OPER_PRD_MSIL1C_PDMC_20160905T104813_R002_V20160905T005712_20160905T010424.SAFE"
@@ -28,6 +27,7 @@ def test_safe():
         'sensing_orbit_number': '2',
         'sensing_orbit_direction': 'DESCENDING'
     }
+    print(os.path.join(TESTDATA_DIR, SAFE))
     _test_attributes(test_data, os.path.join(TESTDATA_DIR, SAFE))
 
 
@@ -111,19 +111,42 @@ def _test_attributes(test_data, safe_path):
             if not granule.nodata_mask.is_empty:
                 assert granule.nodata_mask.intersects(granule.footprint)
             assert isinstance(granule.band_path(2), str)
-            for bid in BAND_IDS:
-                abs_path = granule.band_path(bid, absolute=True)
-                assert os.path.isabs(abs_path)
-                rel_path = granule.band_path(bid, absolute=False)
-                abs_gdal_path = granule.band_path(
-                    bid, absolute=True, for_gdal=True
-                )
-                rel_gdal_path = granule.band_path(
-                    bid, absolute=False, for_gdal=True
-                )
-                if safe.is_zip:
-                    assert abs_gdal_path.startswith("/vsizip/")
-                    assert rel_gdal_path.startswith("/vsizip/")
-                    assert rel_path in safe._zipfile.namelist()
-                else:
-                    assert os.path.isfile(rel_path)
+            if safe.processing_level == 'Level-1C':
+                if safe.product_format == 'SAFE':
+                    BAND_IDS_1C = [bid for bid in BAND_IDS.copy() if bid not in ['AOT', 'WVP', 'SCL', 'TCI']]
+                if safe.product_format == 'SAFE_COMPACT':
+                    BAND_IDS_1C = [bid for bid in BAND_IDS.copy() if bid not in ['AOT', 'WVP', 'SCL']]
+                for bid in BAND_IDS_1C:
+                    abs_path = granule.band_path(bid, absolute=True)
+                    assert os.path.isabs(abs_path)
+                    rel_path = granule.band_path(bid, absolute=False)
+                    abs_gdal_path = granule.band_path(
+                        bid, absolute=True, for_gdal=True
+                    )
+                    rel_gdal_path = granule.band_path(
+                        bid, absolute=False, for_gdal=True
+                    )
+                    if safe.is_zip:
+                        assert abs_gdal_path.startswith("/vsizip/")
+                        assert rel_gdal_path.startswith("/vsizip/")
+                        assert rel_path in safe._zipfile.namelist()
+                    else:
+                        assert os.path.isfile(rel_path)
+            if safe.processing_level == 'Level-2A':
+                for bid in BAND_IDS:
+                    print(bid)
+                    abs_path = granule.band_path(bid, absolute=True)
+                    assert os.path.isabs(abs_path)
+                    rel_path = granule.band_path(bid, absolute=False)
+                    abs_gdal_path = granule.band_path(
+                        bid, absolute=True, for_gdal=True
+                    )
+                    rel_gdal_path = granule.band_path(
+                        bid, absolute=False, for_gdal=True
+                    )
+                    if safe.is_zip:
+                        assert abs_gdal_path.startswith("/vsizip/")
+                        assert rel_gdal_path.startswith("/vsizip/")
+                        assert rel_path in safe._zipfile.namelist()
+                    else:
+                        assert os.path.isfile(rel_path)
