@@ -1,4 +1,4 @@
-# s2reader
+# s2reader3
 
 [![PyPI version](https://badge.fury.io/py/s2reader3.svg)](https://badge.fury.io/py/s2reader3) [![Build Status](https://travis-ci.org/robert-werner/s2reader3.svg?branch=master)](https://travis-ci.org/robert-werner/s2reader3) [![Coverage Status](https://coveralls.io/repos/github/robert-werner/s2reader3/badge.svg?branch=master)](https://coveralls.io/github/robert-werner/s2reader3?branch=master) [![Code Health](https://landscape.io/github/ungarj/s2reader/master/landscape.svg?style=flat)](https://landscape.io/github/robert-werner/s2reader3/master)
 
@@ -14,28 +14,21 @@ import s2reader3
 
 with s2reader3.open("example.SAFE") as s2_product:
     # returns product start time
-    print
-    s2_product.product_start_time
+    print(s2_product.product_start_time)
     # returns product stop time
-    print
-    s2_product.product_stop_time
+    print(s2_product.product_stop_time)
     # returns product generation time
-    print
-    s2_product.generation_time
+    print(s2_product.generation_time)
     # returns product footprint
-    print
-    s2_product.footprint
+    print(s2_product.footprint)
     # iterates through product granules
     for granule in s2_product.granules:
         # returns granule path
-        print
-        granule.granule_path
+        print(granule.granule_path)
         # returns granule footprint
-        print
-        granule.footprint
+        print(granule.footprint)
 
     # returns list of image paths of a specific band (e.g. all .jp2 files for
     # band 1)
-    print
-    s2_product.granule_paths(1)
+    print(s2_product.granule_paths(1))
 ```
