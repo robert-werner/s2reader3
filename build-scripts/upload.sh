@@ -11,7 +11,5 @@ echo $PYPI_USERNAME
 echo $PYPI_PASSWORD
 echo "username=$PYPI_USERNAME" >> $PYPI_CONFIG
 echo "password=$PYPI_PASSWORD" >> $PYPI_CONFIG
-echo $PYPI_USERNAME >> $TWINE_USERNAME
-echo $PYPI_PASSWORD >> $TWINE_PASSWORD
 
-twine upload  --repository-url https://upload.pypi.org/legacy/ --verbose dist/*
+twine upload --repository-url https://upload.pypi.org/legacy/ -u $PYPI_USERNAME -p $PYPI_PASSWORD --verbose dist/*.
