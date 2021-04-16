@@ -14,7 +14,7 @@ Sentinel 2 [Product Specification](https://www.google.at/url?sa=t&rct=j&q=&esrc=
 ```python
 import s2reader3
 
-with s2reader3.open("example.SAFE") as s2_product.with s2reader.open("example.SAFE") as s2_product:
+with s2reader3.open("example.SAFE") as s2_product:
     # returns product start time
     print(s2_product.product_start_time)
     # returns product stop time
