@@ -401,6 +401,8 @@ class SentinelGranule(object):
                 )
         product_org = next(self.dataset._product_metadata.iter(
             "Product_Organisation"))
+        print(list(self.dataset._product_metadata.iter(
+            "Product_Info"))[0][3].text)
         granule_item = [
             g
             for g in chain(*[gl for gl in product_org.iter("Granule_List")])
@@ -411,9 +413,16 @@ class SentinelGranule(object):
                 "Granule ID cannot be found in product metadata."
             )
         image_list = sorted([f.text for f in granule_item[0].iter()])
-        rel_path = [
-            image for image in image_list if band_id in image[-3:] or band_id in image[-7:-4]
-          ]
+        rel_path = []
+        for image in image_list:
+            if list(self.dataset._product_metadata.iter(
+            "Product_Info"))[0][3].text == 'Level-1C':
+              if band_id in image[-3:]:
+                  rel_path.append(image)
+            if list(self.dataset._product_metadata.iter(
+            "Product_Info"))[0][3].text == 'Level-2A':
+              if band_id in image[-7:-4]:
+                  rel_path.append(image)
         if len(rel_path) < 1:
             # Apparently some SAFE files don't contain all bands. In such a
             # case, raise a warning and return None.
